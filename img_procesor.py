@@ -1,7 +1,8 @@
 from IPython import display
+import tensorflow as tf
 from matplotlib import pyplot as plt
 import imageio as iio
-import tensorflow as tf
+
 
 class img_procesor():
 

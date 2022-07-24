@@ -83,3 +83,4 @@ Werkzeug==2.0.1
 widgetsnbextension==3.5.1
 opencv-contrib-python==4.5.5.62
 imageio==2.19.5
+tensorflow==2.9.1
