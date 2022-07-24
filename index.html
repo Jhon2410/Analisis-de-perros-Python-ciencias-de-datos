@@ -229,7 +229,7 @@
     }
 
     fileInput.addEventListener("change",(e)=>{
-      const imgURL = URL.createObjectURL(e.files[0]);
+      const imgURL = URL.createObjectURL(fileInput.files[0]);
       imgPerro.src = imgURL
       myChart.width=myChart.width;
     })
