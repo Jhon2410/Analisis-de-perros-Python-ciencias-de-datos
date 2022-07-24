@@ -145,6 +145,8 @@
         const imgURL = URL.createObjectURL(formulario[0].files[0]);
         imgPerro.src = imgURL
         myChart.width=myChart.width;
+        let ctx = myChart.getContext("2d");
+        ctx.clearRect(0, 0, myChart.width, myChart.height);
         imagenSelected.innerText =" Image selected : " + formulario[0].files[0].name
         razaName.innerText=""
         e.preventDefault();
@@ -222,6 +224,8 @@
     const imgURL = URL.createObjectURL(formulario[0].files[0]);
     imgPerro.src = imgURL
     myChart.width=myChart.width;
+    let ctx = myChart.getContext("2d");
+    ctx.clearRect(0, 0, myChart.width, myChart.height);
     razaName.innerText=""
     imagenSelected.innerText =" Image selected : " + formulario[0].files[0].name
     };
@@ -237,6 +241,8 @@
       imgPerro.src = imgURL
       myChart.width=myChart.width;
       razaName.innerText=""
+      let ctx = myChart.getContext("2d");
+      ctx.clearRect(0, 0, myChart.width, myChart.height);
       imagenSelected.innerText =" Image selected : " + fileInput.files[0].name
     })
 </script>
