@@ -106,7 +106,7 @@
 <body class="bg-primary text-white">
    
     <div id="dropContainer" onclick="abrirArchivos()" class="container my-3" style="border:3px dashed rgb(255, 255, 255);height:100px;">
-        Click or Drop Here the dog Image
+        Click or Drop Here the dog Image <p id="imagenSelected"></p>
      </div>
     <form method="post" id="formulario" class="text-center my-3" action="http://localhost:5000/">
         <input type="file" hidden required name="file" id="fileInput" />
@@ -139,11 +139,13 @@
     const imgPerro = document.getElementById("imgPerro")
     const razaName = document.getElementById("razaName")
     const spinner = document.getElementById("spinner")
+    const imagenSelected = document.getElementById("imagenSelected")
 
     formulario.addEventListener("submit",async(e)=>{
         const imgURL = URL.createObjectURL(formulario[0].files[0]);
         imgPerro.src = imgURL
         myChart.width=myChart.width;
+        imagenSelected.innerText =" Image selected : " + formulario[0].files[0].name
         razaName.innerText=""
         e.preventDefault();
         spinner.removeAttribute("hidden")
@@ -221,6 +223,7 @@
     imgPerro.src = imgURL
     myChart.width=myChart.width;
     razaName.innerText=""
+    imagenSelected.innerText =" Image selected : " + formulario[0].files[0].name
     };
 
     
@@ -233,6 +236,7 @@
       const imgURL = URL.createObjectURL(fileInput.files[0]);
       imgPerro.src = imgURL
       myChart.width=myChart.width;
+      imagenSelected.innerText =" Image selected : " + fileInput.files[0].name
     })
 </script>
 <!-- MDB -->
