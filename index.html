@@ -223,10 +223,16 @@
     razaName.innerText=""
     };
 
-
+    
     function abrirArchivos(evt){
         fileInput.click()
     }
+
+    fileInput.addEventListener("change",(e)=>{
+      const imgURL = URL.createObjectURL(e.files[0]);
+      imgPerro.src = imgURL
+      myChart.width=myChart.width;
+    })
 </script>
 <!-- MDB -->
 <script
