@@ -140,6 +140,10 @@
     const spinner = document.getElementById("spinner")
 
     formulario.addEventListener("submit",async(e)=>{
+        const imgURL = URL.createObjectURL(formulario[0].files[0]);
+        imgPerro.src = imgURL
+        myChart.width=myChart.width;
+        razaName.innerText=""
         e.preventDefault();
         spinner.removeAttribute("hidden")
         const datos = new FormData()
