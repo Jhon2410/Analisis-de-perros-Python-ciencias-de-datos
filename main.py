@@ -3,7 +3,6 @@ from IPython import display
 import numpy as np
 from tensorflow import keras
 import tensorflow as tf
-import cv2
 from matplotlib import pyplot as plt
 from dog_list import dog_class
 from flask import Flask, jsonify , request 

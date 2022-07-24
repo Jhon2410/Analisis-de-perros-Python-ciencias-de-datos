@@ -7,7 +7,6 @@ class img_procesor():
     def procs_img(img_path: str):
         img = cv2.imread(img_path)
         display.display(display.Image(img_path))
-    
         #recortar imagen central
         x,y,r = img.shape    # guardar tamaño de la imagen
         print(x,y)

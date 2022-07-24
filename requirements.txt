@@ -1,5 +1,6 @@
 argon2-cffi==21.1.0
 attrs==21.2.0
+opencv-python==4.6.0.66
 autocommand==2.2.1
 backcall==0.2.0
 bleach==4.1.0
