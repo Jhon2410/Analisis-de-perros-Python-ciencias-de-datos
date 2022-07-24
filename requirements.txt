@@ -54,7 +54,6 @@ prometheus-client==0.11.0
 prompt-toolkit==3.0.20
 pycparser==2.20
 Pygments==2.10.0
-pyparsing==2.4.7
 pywin32==301
 pywinpty==1.1.4
 pyzmq==22.3.0
