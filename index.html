@@ -125,8 +125,23 @@
         <div class="square"></div>
       </div>
       <div id="perrosCoincidence">
+        <div id="verMas" >
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="green" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+          </svg>
+        </div>
 
+        <div id="verMenos" hidden >
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="red" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+          </svg>
+        </div>
 
+       
+        
+        <div id="perrosCoincidenceFotos" hidden>
+          
+        </div>
       </div>
 
 
@@ -146,13 +161,16 @@
   const spinner = document.getElementById("spinner")
   const imagenSelected = document.getElementById("imagenSelected")
   const perrosCoincidence = document.getElementById("perrosCoincidence")
+  const perrosCoincidenceFotos = document.getElementById("perrosCoincidenceFotos")
+  const verMas = document.getElementById("verMas")
+  const verMenos = document.getElementById("verMenos")
 
   formulario.addEventListener("submit", async (e) => {
     const imgURL = URL.createObjectURL(formulario[0].files[0]);
     imgPerro.src = imgURL
     myChart.width = myChart.width;
     let ctx = myChart.getContext("2d");
-    perrosCoincidence.innerHTML = "";
+    perrosCoincidenceFotos.innerHTML = ""
     ctx.clearRect(0, 0, myChart.width, myChart.height);
     imagenSelected.innerText = " Image selected : " + formulario[0].files[0].name
     razaName.innerText = ""
@@ -160,7 +178,7 @@
     spinner.removeAttribute("hidden")
     const datos = new FormData()
     datos.append("chandozo", formulario[0].files[0])
-    const base_url = "https://c6b6-181-49-23-78.ngrok.io"
+    const base_url = "https://82f1-181-49-23-78.ngrok.io"
     const res = await axios.post(`${base_url}/api/upload`, datos)
     const xValues = [];
     const yValues = [];
@@ -174,11 +192,11 @@
           "#1e7145"
         ];
         res.data.data.map((perro, idx) => {
-          perrosCoincidence.innerHTML += `
+          perrosCoincidenceFotos.innerHTML += `
                   <div class="text-dark position-relative my-3">
-                <img src="https://d.img.vision/dogsclass/${perro.raza}.png" width="50px" class="img-perros">
+                <img src="https://d.img.vision/dogsclass/Spaniel_Japones.jpg" width="50px" class="img-perros ">
                 <span id="procentaje" class="text-dark position-absolute text-white p-1" style="left: 23px;top: -16px; background:${barColors[idx]};border-radius: 15px;">${perro.procentaje}%</span>
-                ${perro.raza}
+                <span class="mx-3">${perro.raza}</span>
                 </div>
                   `
           xValues.push(perro.raza)
@@ -224,6 +242,26 @@
       )
     }
   })
+
+
+  verMas.addEventListener("click",()=>{
+    vermas()
+  })
+  function vermas(){
+    perrosCoincidenceFotos.removeAttribute("hidden")
+    verMenos.removeAttribute("hidden")
+    verMas.setAttribute("hidden","")
+
+  }
+
+  verMenos.addEventListener("click",()=>{
+    vermenos()
+  })
+  function vermenos(){
+    perrosCoincidenceFotos.setAttribute("hidden","")
+    verMas.removeAttribute("hidden")
+    verMenos.setAttribute("hidden","")
+  }
 
   dropContainer.ondragover = dropContainer.ondragenter = function (e) {
     e.preventDefault();
