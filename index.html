@@ -178,7 +178,7 @@
     spinner.removeAttribute("hidden")
     const datos = new FormData()
     datos.append("chandozo", formulario[0].files[0])
-    const base_url = "http://127.0.0.1:5000"
+    const base_url = "https://9188-181-49-23-78.ngrok.io"
     const res = await axios.post(`${base_url}/api/upload`, datos)
     const xValues = [];
     const yValues = [];
