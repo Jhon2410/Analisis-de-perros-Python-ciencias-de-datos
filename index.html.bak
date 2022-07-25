@@ -217,7 +217,7 @@
           options: {
             title: {
               display: true,
-              text: "Probabilidad de raza"
+              text: "Probabilidad de raza."
             }
           }
         });

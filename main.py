@@ -1,15 +1,11 @@
 from img_procesor import img_procesor
-from IPython import display
 import numpy as np
-from tensorflow import keras
 import tensorflow as tf
-from matplotlib import pyplot as plt
 from dog_list import dog_class
 from flask import Flask, jsonify , request 
 from werkzeug.utils import secure_filename
 import os
 from flask_cors import CORS
-import json
 
 model = tf.keras.models.load_model('./modelo/modelo_perros.h5')
 
