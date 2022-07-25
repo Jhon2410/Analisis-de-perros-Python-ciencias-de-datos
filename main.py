@@ -44,7 +44,8 @@ def ProccesarImage():
             imgpath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(imgpath)
             img_path = imgpath
-            img = img_procesor.procs_img(img_path)
+            img = img_procesor.procs_img(img_path)  
+            print("ruta de imagen ",img_path)
             predictions = model.predict(img)
             score = predictions[0]
             top_index_list = np.argsort(score)[::-1][:3]
