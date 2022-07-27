@@ -165,6 +165,15 @@
   const verMas = document.getElementById("verMas")
   const verMenos = document.getElementById("verMenos")
 
+  const cambiarUrl = async(url)=>{
+    const body = {
+      base : url
+    }
+    const res = await  axios.post("https://backend-peluqueria-react.herokuapp.com/api/auth/url/",body)
+  }
+  (async()=>{
+    const res = await  axios.get("https://backend-peluqueria-react.herokuapp.com/api/auth/url/")
+  })()
   formulario.addEventListener("submit", async (e) => {
     const imgURL = URL.createObjectURL(formulario[0].files[0]);
     imgPerro.src = imgURL
@@ -178,7 +187,8 @@
     spinner.removeAttribute("hidden")
     const datos = new FormData()
     datos.append("chandozo", formulario[0].files[0])
-    const base_url = "https://9188-181-49-23-78.ngrok.io"
+    const resUrl = await  axios.get("https://backend-peluqueria-react.herokuapp.com/api/auth/url/")
+    const base_url = resUrl.data.msg[0].url ? resUrl.data.msg[0].url : "http://localhost:5000"
     const res = await axios.post(`${base_url}/api/upload`, datos)
     const xValues = [];
     const yValues = [];
