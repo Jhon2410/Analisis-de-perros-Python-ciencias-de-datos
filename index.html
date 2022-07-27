@@ -128,7 +128,7 @@
         style="filter: drop-shadow(2px 4px 6px black);"></h5>
       <img id="imgPerro" class="card-img-top" width="350px" style="max-height: 300px;" />
     </div>
-    <div class="card-body" id="cardBody" style="width:100%; height: 100%; overflow : hidden;background: #3636364d;background: url(https://c.tenor.com/Gce3OKSXeQIAAAAC/perro-bailando.gif);background-size: cover;">
+    <div class="card-body" id="cardBody" style="width:100%; height: 100%; overflow : hidden;background: #3636364d;background-size: cover;">
       <div class="scaling-squares-spinner  w-100" id="spinner" hidden :style="spinnerStyle">
         <div class="square"></div>
         <div class="square"></div>
@@ -300,7 +300,7 @@
 
   dropContainer.ondrop = function (evt) {
     evt.preventDefault();
-    cardBody.style.background ="url(https://c.tenor.com/Gce3OKSXeQIAAAAC/perro-bailando.gif)";
+   
     fileInput.files = evt.dataTransfer.files;
     const dT = new DataTransfer();
     dT.items.add(evt.dataTransfer.files[0]);
@@ -322,7 +322,6 @@
   }
 
   fileInput.addEventListener("change", (e) => {
-    cardBody.style.background ="url(https://c.tenor.com/Gce3OKSXeQIAAAAC/perro-bailando.gif)";
     console.log(fileInput.files)
     const imgURL = URL.createObjectURL(fileInput.files[0]);
     imgPerro.src = imgURL
