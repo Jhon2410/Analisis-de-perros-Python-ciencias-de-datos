@@ -11,16 +11,16 @@
   <!-- MDB -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.css" rel="stylesheet" />
   <style>
-
-    body{
+    body {
       background: url(https://st2.depositphotos.com/1106005/8169/i/600/depositphotos_81696382-stock-photo-teal-and-white-doggy-tile.jpg) no-repeat !important;
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover !important;
-    min-height: 100vh;
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover !important;
+      min-height: 100vh;
     }
+
     .scaling-squares-spinner,
     .scaling-squares-spinner * {
       box-sizing: border-box;
@@ -121,36 +121,41 @@
     <button type="submit" class="btn btn-success mx-auto ">Analizar</button>
   </form>
 
-  <div class="card mx-auto d-flex position-relative" style="max-width: 500px;background: url(https://c.tenor.com/Gce3OKSXeQIAAAAC/perro-bailando.gif);background-size: cover;">
+  <div class="card mx-auto d-flex position-relative" id="card"
+    style="max-width: 500px; visibility: hidden;">
     <div>
       <h5 id="razaName" class="text-center position-absolute top-0 w-100"
         style="filter: drop-shadow(2px 4px 6px black);"></h5>
       <img id="imgPerro" class="card-img-top" width="350px" style="max-height: 300px;" />
     </div>
-    <div class="card-body" style="width:100%; height: 100%; overflow : hidden;">
+    <div class="card-body" id="cardBody" style="width:100%; height: 100%; overflow : hidden;background: #3636364d;background: url(https://c.tenor.com/Gce3OKSXeQIAAAAC/perro-bailando.gif);background-size: cover;">
       <div class="scaling-squares-spinner  w-100" id="spinner" hidden :style="spinnerStyle">
         <div class="square"></div>
         <div class="square"></div>
         <div class="square"></div>
         <div class="square"></div>
       </div>
-      <div id="perrosCoincidence" style="background: #fffdfd;">
-        <div id="verMas" >
-          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="green" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+      <div id="perrosCoincidence">
+        <div id="verMas">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="green"
+            class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+            <path
+              d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
           </svg>
         </div>
 
-        <div id="verMenos" hidden >
-          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="red" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
-            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+        <div id="verMenos" hidden>
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="red" class="bi bi-arrow-left-circle-fill"
+            viewBox="0 0 16 16">
+            <path
+              d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
           </svg>
         </div>
 
-       
-        
+
+
         <div id="perrosCoincidenceFotos" hidden>
-          
+
         </div>
       </div>
 
@@ -174,16 +179,18 @@
   const perrosCoincidenceFotos = document.getElementById("perrosCoincidenceFotos")
   const verMas = document.getElementById("verMas")
   const verMenos = document.getElementById("verMenos")
+  const card = document.getElementById("card")
+  const cardBody = document.getElementById("cardBody")
 
-  const cambiarUrl = async(url)=>{
-    const body = {
-      base : url
+  const cambiarUrl = async (url) => {
+      const body = {
+        base: url
+      }
+      const res = await axios.post("https://backend-peluqueria-react.herokuapp.com/api/auth/url/", body)
     }
-    const res = await  axios.post("https://backend-peluqueria-react.herokuapp.com/api/auth/url/",body)
-  }
-  (async()=>{
-    const res = await  axios.get("https://backend-peluqueria-react.herokuapp.com/api/auth/url/")
-  })()
+    (async () => {
+      const res = await axios.get("https://backend-peluqueria-react.herokuapp.com/api/auth/url/")
+    })()
   formulario.addEventListener("submit", async (e) => {
     const imgURL = URL.createObjectURL(formulario[0].files[0]);
     imgPerro.src = imgURL
@@ -197,7 +204,7 @@
     spinner.removeAttribute("hidden")
     const datos = new FormData()
     datos.append("chandozo", formulario[0].files[0])
-    const resUrl = await  axios.get("https://backend-peluqueria-react.herokuapp.com/api/auth/url/")
+    const resUrl = await axios.get("https://backend-peluqueria-react.herokuapp.com/api/auth/url/")
     const base_url = resUrl.data.msg[0].url ? resUrl.data.msg[0].url : "http://localhost:5000"
     const res = await axios.post(`${base_url}/api/upload`, datos)
     const xValues = [];
@@ -214,9 +221,9 @@
         res.data.data.map((perro, idx) => {
           perrosCoincidenceFotos.innerHTML += `
                   <div class="text-dark position-relative my-3">
-                <img src="https://d.img.vision/dogsclass/${perro.raza.replaceAll(' ', '_')}.png" width="80px" class="img-perros ">
-                <span id="procentaje" class="text-dark position-absolute text-white p-1" style="left: 23px;top: -16px; background:${barColors[idx]};border-radius: 15px;">${perro.procentaje}%</span>
-                <span class="mx-3">${perro.raza.toUpperCase()}</span>
+                <img src="https://d.img.vision/dogsclass/${perro.raza.replaceAll(' ', '_')}.png" width="70px" class="img-perros ">
+                <span id="procentaje" class="text-dark position-absolute text-white p-1" style="left: 23px;top: -16px; background:${barColors[idx]};border-radius: 20px;">${perro.procentaje}%</span>
+                <span class="mx-3 text-muted " >${perro.raza.toUpperCase()}</span>
                 </div>
                   `
           xValues.push(perro.raza.toUpperCase())
@@ -241,6 +248,8 @@
             }
           }
         });
+        cardBody.style.backgroundColor = "#fff";
+        cardBody.style.background ="none";
         scroll(0, document.body.scrollHeight);
 
       } else {
@@ -264,23 +273,25 @@
   })
 
 
-  verMas.addEventListener("click",()=>{
+  verMas.addEventListener("click", () => {
     vermas()
   })
-  function vermas(){
+
+  function vermas() {
     perrosCoincidenceFotos.removeAttribute("hidden")
     verMenos.removeAttribute("hidden")
-    verMas.setAttribute("hidden","")
+    verMas.setAttribute("hidden", "")
 
   }
 
-  verMenos.addEventListener("click",()=>{
+  verMenos.addEventListener("click", () => {
     vermenos()
   })
-  function vermenos(){
-    perrosCoincidenceFotos.setAttribute("hidden","")
+
+  function vermenos() {
+    perrosCoincidenceFotos.setAttribute("hidden", "")
     verMas.removeAttribute("hidden")
-    verMenos.setAttribute("hidden","")
+    verMenos.setAttribute("hidden", "")
   }
 
   dropContainer.ondragover = dropContainer.ondragenter = function (e) {
@@ -289,6 +300,7 @@
 
   dropContainer.ondrop = function (evt) {
     evt.preventDefault();
+    cardBody.style.background ="url(https://c.tenor.com/Gce3OKSXeQIAAAAC/perro-bailando.gif)";
     fileInput.files = evt.dataTransfer.files;
     const dT = new DataTransfer();
     dT.items.add(evt.dataTransfer.files[0]);
@@ -300,6 +312,8 @@
     ctx.clearRect(0, 0, myChart.width, myChart.height);
     razaName.innerText = ""
     imagenSelected.innerText = " Image selected : " + formulario[0].files[0].name
+    card.style.visibility = "visible"
+
   };
 
 
@@ -308,6 +322,7 @@
   }
 
   fileInput.addEventListener("change", (e) => {
+    cardBody.style.background ="url(https://c.tenor.com/Gce3OKSXeQIAAAAC/perro-bailando.gif)";
     console.log(fileInput.files)
     const imgURL = URL.createObjectURL(fileInput.files[0]);
     imgPerro.src = imgURL
@@ -316,9 +331,10 @@
     let ctx = myChart.getContext("2d");
     ctx.clearRect(0, 0, myChart.width, myChart.height);
     imagenSelected.innerText = " Image selected : " + fileInput.files[0].name
+    card.style.visibility = "visible"
+
   })
 </script>
-<!-- MDB -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.js"></script>
 
 </html>
